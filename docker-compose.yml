@@ -1,0 +1,30 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:8.0.23
+    restart: "no"
+    container_name: study-hard
+    environment:
+      - MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=study-hard
+      - MYSQL_ROOT_HOST=%
+      - TZ=Asia/Seoul
+    ports:
+      - "3307:3306"
+    command:
+      - "mysqld"
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
+      - "--lower_case_table_names=1"
+    volumes:
+      - /Users/parkjonghyun/mysql-container/study-hard:/var/lib/mysql
+  redis1:
+    image: redis
+    command: redis-server --requirepass root --port 6379
+    restart: "no"
+    container_name: study-hard-redis
+    ports:
+      - 6380:6379
+    volumes:
+      - /Users/parkjonghyun/mysql-container/study-hard-redis:/data

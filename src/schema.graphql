@@ -1,0 +1,37 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CreateUserAccessTokenOutput {
+  accessToken: String!
+  refreshToken: String!
+}
+
+type User {
+  no: Int!
+  email: Int!
+
+  """생성일"""
+  createdAt: DateTime!
+
+  """수정일"""
+  updatedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  sayTest: String!
+
+  """유저 액세스 토큰 생성"""
+  createUserAccessToken(email: String!, password: String!): CreateUserAccessTokenOutput!
+
+  """유저 생성"""
+  createUser(email: String!, password: String!): Boolean!
+
+  """내 정보 조회"""
+  getMyInfo: User!
+}
