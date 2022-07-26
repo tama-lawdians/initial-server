@@ -9,7 +9,7 @@ type CreateUserAccessTokenOutput {
 
 type User {
   no: Int!
-  email: Int!
+  email: String!
 
   """생성일"""
   createdAt: DateTime!
@@ -25,6 +25,7 @@ scalar DateTime
 
 type Query {
   sayTest: String!
+  axios: Boolean!
 
   """유저 액세스 토큰 생성"""
   createUserAccessToken(email: String!, password: String!): CreateUserAccessTokenOutput!
@@ -34,4 +35,12 @@ type Query {
 
   """내 정보 조회"""
   getMyInfo: User!
+}
+
+type Mutation {
+  chat(message: String!): Boolean!
+}
+
+type Subscription {
+  chatSub: String!
 }

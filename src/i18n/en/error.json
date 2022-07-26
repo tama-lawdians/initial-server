@@ -1,4 +1,5 @@
 {
+  "HELLO": "Hello",
   "INVALID_EMAIL": "Email is invalid",
   "INVALID_PASSWORD_FORMAT":"Password can be from a minimum of 6 characters to a maximum of 12 characters.",
   "NOT_FOUND_USER": "No user exist",

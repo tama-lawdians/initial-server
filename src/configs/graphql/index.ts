@@ -26,6 +26,18 @@ export class GraphqlService implements GqlOptionsFactory {
       debug: graphqlConfig.debug,
       playground: graphqlConfig.playgroundEnabled,
       context: ({ req }) => ({ req }),
+      subscriptions: {
+        'graphql-ws': {
+          onConnect: (ctx) => {
+            console.log({ ctx });
+            // TODO: 여기서 헤더에 담겨오는 토큰으로 subscription 연결 자체를 제한할 수 있다.
+          },
+        },
+        // apollo 3 버전에서는 얘를 넣어줘야 playground 에서 가능
+        // But, client 쪽에서는 쓰지 말기!!
+        // only 백엔드 playground subscription 용
+        'subscriptions-transport-ws': true,
+      },
       // validationRules:
       //   process.env.NODE_ENV === 'dev' ? null : [NoIntrospection],
       formatError: (error: GraphQLError) => {

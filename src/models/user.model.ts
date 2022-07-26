@@ -9,7 +9,7 @@ export class User {
   no: number;
 
   // 로그인 이메일
-  @Field(() => Int)
+  @Field()
   email: string;
 
   // 로그인 비밀번호

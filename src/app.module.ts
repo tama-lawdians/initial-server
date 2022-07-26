@@ -19,6 +19,9 @@ import {
   AcceptLanguageResolver,
 } from 'nestjs-i18n';
 import { UserModule } from './apis/user/user.module';
+import { ClientsModule, Transport } from '@nestjs/microservices';
+import { MysqlModule } from './apis/mysql/mysql.module';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
@@ -51,6 +54,16 @@ import { UserModule } from './apis/user/user.module';
         new CookieResolver(),
         AcceptLanguageResolver,
       ],
+    }),
+    MysqlModule.forRoot({
+      host: process.env.MYSQL_HOST,
+      user: process.env.MYSQL_USER,
+      port: +process.env.MYSQL_PORT,
+      password: process.env.MYSQL_PASSWORD,
+      database: process.env.MYSQL_DATABASE,
+      connectionLimit: +process.env.MYSQL_CONNECTION_LIMIT,
+      waitForConnections:
+        process.env.MYSQL_WAIT_FOR_CONNECTIONS === 'true' ? true : false,
     }),
     TestModule,
     RedisCacheModule,
